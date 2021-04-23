@@ -14,6 +14,8 @@ runs:
     shell: bash
   - run: export POLARIS_ACCESS_TOKEN=${{ inputs.access_token }}
     shell: bash
+  - run: printenv
+    shell: bash
   - run: wget -q ${{ inputs.server_url}}/api/tools/polaris_cli-linux64.zip
     shell: bash
   - run: unzip -j polaris_cli-linux64.zip -d /tmp
