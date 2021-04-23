@@ -19,3 +19,4 @@ runs:
   - run: unzip -j polaris_cli_linux64.zip -d /tmp
     shell: bash
   - run: /tmp/polaris analyze -w --coverity-ignore-capture-failure
+    shell: bash
