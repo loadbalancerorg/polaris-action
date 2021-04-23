@@ -16,7 +16,7 @@ runs:
     shell: bash
   - run: wget -q ${{ inputs.server_url}}/api/tools/polaris_cli-linux64.zip
     shell: bash
-  - run: unzip -j polaris_cli_linux64.zip -d /tmp
+  - run: unzip -j polaris_cli-linux64.zip -d /tmp
     shell: bash
   - run: /tmp/polaris analyze -w --coverity-ignore-capture-failure
     shell: bash
