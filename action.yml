@@ -7,15 +7,15 @@ inputs:
   access_token:
     description: 'Access token for accessing the polaris server instance'
     required: true
-  runs:
-    using: "composite"
-    steps:
-    - run: export POLARIS_SERVER_URL=${{ inputs.server_url }}
-      shell: bash
-    - run: export POLARIS_ACCESS_TOKEN=${{ inputs.access_token }}
-      shell: bash
-    - run: wget -q ${{ inputs.server_url}}/api/tools/polaris_cli-linux64.zip
-      shell: bash
-    - run: unzip -j polaris_cli_linux64.zip -d /tmp
-      shell: bash
-    - run: /tmp/polaris analyze -w --coverity-ignore-capture-failure
+runs:
+  using: "composite"
+  steps:
+  - run: export POLARIS_SERVER_URL=${{ inputs.server_url }}
+    shell: bash
+  - run: export POLARIS_ACCESS_TOKEN=${{ inputs.access_token }}
+    shell: bash
+  - run: wget -q ${{ inputs.server_url}}/api/tools/polaris_cli-linux64.zip
+    shell: bash
+  - run: unzip -j polaris_cli_linux64.zip -d /tmp
+    shell: bash
+  - run: /tmp/polaris analyze -w --coverity-ignore-capture-failure
