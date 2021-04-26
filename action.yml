@@ -31,5 +31,5 @@ runs:
       export POLARIS_SERVER_URL=${{ inputs.server_url }}
       /tmp/polaris analyze -w --coverity-ignore-capture-failure
     shell: bash
-  - run: ${{ github.action_path}}/polaris-scan-check-result.py ${{ inputs.cli_scan_json_file }} ${{ inputs.total_issues }} ${{ inputs.new_issues }}
+  - run: ${{ github.action_path}}/polaris-scan-result-check.py ${{ inputs.cli_scan_json_file }} ${{ inputs.total_issues }} ${{ inputs.new_issues }}
     shell: bash
