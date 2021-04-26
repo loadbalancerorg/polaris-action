@@ -7,9 +7,21 @@ inputs:
   access_token:
     description: 'Access token for accessing the polaris server instance'
     required: true
+  total_issues:
+    description: 'A count of total issues'
+    required: false
+    default: '0'
+  new_issues: 
+    description: 'A count of new issues'
+    required: false
+    default: '0'
+  cli_scan_json_file:
+    description: 'The cli-scan.json file location'
+    required: false
+    default: '.synopsys/polaris/cli-scan.json'
 runs:
   using: "composite"
-  steps:
+  steps: 
   - run: wget -q ${{ inputs.server_url}}/api/tools/polaris_cli-linux64.zip
     shell: bash
   - run: unzip -j polaris_cli-linux64.zip -d /tmp
@@ -18,4 +30,6 @@ runs:
       export POLARIS_ACCESS_TOKEN=${{ inputs.access_token }}
       export POLARIS_SERVER_URL=${{ inputs.server_url }}
       /tmp/polaris analyze -w --coverity-ignore-capture-failure
+    shell: bash
+  - run: ${{ github.action_path}}/polaris-scan-check-result.py
     shell: bash
