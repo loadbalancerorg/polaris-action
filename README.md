@@ -16,7 +16,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
       - name: Run Polaris tests
-        uses: loadbalancerorg/polaris-action@main
+        uses: loadbalancerorg/polaris-action@v1
         with: 
           server_url: ${{ secrets.POLARIS_URL }} # (Required)
           access_token: ${{ secrets.POLARIS_ACCESS_TOKEN }} # (Required)
