@@ -35,4 +35,4 @@ if total_issues and new_issues are not set the build will be marked as a failure
 - new_issues: (default:0)
 - cli_scan_json_file: When the scan completes the results are stored in cli-scan.json. By default its .synopsys/polaris/cli-scan.json if yours differs alter this value. 
 
-Any problems feel free to contact github@loadbalancer.org 
+Any problems feel free to contact git@loadbalancer.org 
