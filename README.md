@@ -35,4 +35,15 @@ if total_issues and new_issues are not set the build will be marked as a failure
 - new_issues: (default:0)
 - cli_scan_json_file: When the scan completes the results are stored in cli-scan.json. By default its .synopsys/polaris/cli-scan.json if yours differs alter this value. 
 
+#Additonal information on dealing with pull requests. 
+If you are scanning a pull request as part of your CI workflow you will need to checkout the head of the pull request instead of the merge request
+```yml
+ - name: Checkout repository
+      uses: actions/checkout@v2
+
+    # If this run was triggered by a pull request event, then checkout
+    # the head of the pull request instead of the merge commit.
+    - run: git checkout HEAD^2
+      if: ${{ github.event_name == 'pull_request' }}
+```
 Any problems feel free to contact git@loadbalancer.org 
