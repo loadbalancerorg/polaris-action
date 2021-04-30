@@ -22,14 +22,18 @@ inputs:
 runs:
   using: "composite"
   steps: 
-  - run: wget -q ${{ inputs.server_url}}/api/tools/polaris_cli-linux64.zip
+  - name: Downloading polaris_cli
+    run: wget -q ${{ inputs.server_url}}/api/tools/polaris_cli-linux64.zip
     shell: bash
-  - run: unzip -j polaris_cli-linux64.zip -d /tmp
+  - name: Extracting polaris_cli-linux64.zip to tmp
+    run: unzip -j polaris_cli-linux64.zip -d /tmp
     shell: bash
-  - run: |
-      export POLARIS_ACCESS_TOKEN=${{ inputs.access_token }}
-      export POLARIS_SERVER_URL=${{ inputs.server_url }}
-      /tmp/polaris analyze -w --coverity-ignore-capture-failure
+  - name: Pull request
+    if: ${{ github.event_name == 'pull_request'}}
+    run: |
+        export POLARIS_ACCESS_TOKEN=${{ inputs.access_token }}
+        export POLARIS_SERVER_URL=${{ inputs.server_url }}
+        /tmp/polaris ${{env.PULL_REQUEST}} analyze -w --coverity-ignore-capture-failure
     shell: bash
   - run: ${{ github.action_path}}/polaris-scan-result-check.py ${{ inputs.cli_scan_json_file }} ${{ inputs.total_issues }} ${{ inputs.new_issues }}
     shell: bash
