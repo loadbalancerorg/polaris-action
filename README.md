@@ -41,9 +41,7 @@ If you are scanning a pull request as part of your CI worflow and you want to se
 
 ```yml
  - name: Checkout repository
-      uses: actions/checkout@v2
- - run: 
-      git fetch --prune --unshallow
+   uses: actions/checkout@v2
  - name: run polaris against pull request
    if: ${{ github.event_name == 'pull_request' }}
    uses: loadbalancerorg/polaris-action@v2
